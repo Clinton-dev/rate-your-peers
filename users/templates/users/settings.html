@@ -1,0 +1,37 @@
+{% extends "users/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="row g-0">
+    <div class="col-md-3 border p-1">
+        <h4>Edit settings</h4>
+    </div>
+    <div class="col-md-9">
+      <!-- user metadata -->
+        <section class="border">
+            <div class="d-flex text-muted pt-3">
+                <img class="image-fluid rounded-circle account-img" src="{{user.profile.image.url}}" alt="{{user.username}} profile picture">
+                <div class="pb-3 mb-0 small lh-sm w-100">
+                  <div class="d-flex">
+                    <strong class="text-gray-dark">{{user.email}}</strong>
+                  </div>
+                  <span class="d-block">@{{user.username}}</span>
+                </div>
+              </div>
+        </section>
+        <!-- update form -->
+        <section>
+          <form method="POST" class="border p-5" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                {{ u_form|crispy }}
+                {{ p_form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-info text-white" type="submit">Update</button>
+            </div>
+          </form>
+        </section>
+    </div>
+</div>
+{% endblock %}
