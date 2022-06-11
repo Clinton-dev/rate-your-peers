@@ -5,17 +5,20 @@
 <section class="mt-5 w-50">
     <form method="POST" class="border p-5">
         {% csrf_token %}
+        <h2 class="mb-4">
+            <i class="bi bi-instagram"></i>
+              instagram-clone
+        </h2>
         <fieldset class="form-group">
-            <h1 class="h5 mb-3 text-muted">Sign up to see photos and videos from your friends.</h1>
             {{ form|crispy }}
         </fieldset>
         <div class="form-group">
-            <button class="btn btn-info text-white" type="submit">Sign up</button>
+            <button class="btn btn-info text-white" type="submit">Log In</button>
         </div>
     </form>
     <div class="border my-3 py-2">
         <small>
-             Have an account? <a href="{% url 'login' %}" class="ml-2">Log In</a>
+            Don't have an account? <a href="{% url 'register' %}" class="ml-2">Sign Up</a>
         </small>
     </div>
 </section>
