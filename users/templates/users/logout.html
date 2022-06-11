@@ -1,0 +1,13 @@
+{% extends "users/base.html"%}
+
+{% block content%}
+<section class="mt-5 w-50">
+    <div class="border my-3 py-2">
+        <small class="lead">
+            <p class="fw-bold">
+                You have logged out, want to log back in? <a href="{% url 'login' %}" class="ml-2">Login</a>
+            </p>
+        </small>
+    </div>
+</section>
+{% endblock content%}
