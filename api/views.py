@@ -20,3 +20,9 @@ def projectList(request):
     projects = Project.objects.all()
     serializer = ProjectSerializer(projects, many=True)
     return Response(serializer.data)
+
+@api_view(['GET'])
+def projectDetail(request, pk):
+    project = Project.objects.get(id=pk)
+    serializer = ProjectSerializer(project, many=False)
+    return Response(serializer.data)
