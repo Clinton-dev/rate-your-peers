@@ -35,6 +35,15 @@ def projectCreate(request):
         print('data saved')
     else:
         print('data not saved')
+        print(serializer.errors)
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def projectUpdate(request, pk):
+    task = Project.objects.get(id=pk)
+    serializer = ProjectSerializer(instance=task,data=request.data)
+    if serializer.is_valid():
+        serializer.save()
     return Response(serializer.data)
 
 @api_view(['DELETE'])
