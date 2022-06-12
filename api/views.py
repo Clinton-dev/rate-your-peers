@@ -12,3 +12,7 @@ def apiOverView(request):
         'Delete': '/project-delete/<str:pk>/',
     }
     return Response(api_urls)
+
+@api_view(['GET'])
+def projectList(request):
+    pass
