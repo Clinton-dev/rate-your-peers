@@ -5,4 +5,6 @@ urlpatterns = [
     path('', views.apiOverView, name='api-overview'),
     path('project-list/', views.projectList, name='project-list'),
     path('project-detail/<str:pk>/', views.projectDetail, name='project-detail'),
+    path('project-create/', views.projectCreate, name='project-create'),
+    path('project-delete/<str:pk>/', views.projectDelete, name='project-delete'),
 ]

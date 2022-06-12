@@ -26,3 +26,19 @@ def projectDetail(request, pk):
     project = Project.objects.get(id=pk)
     serializer = ProjectSerializer(project, many=False)
     return Response(serializer.data)
+
+@api_view(['POST'])
+def projectCreate(request):
+    serializer = ProjectSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        print('data saved')
+    else:
+        print('data not saved')
+    return Response(serializer.data)
+
+@api_view(['DELETE'])
+def projectDelete(request, pk):
+    task = Project.objects.get(id=pk)
+    task.delete()
+    return Response("Item successfully deleted!")
