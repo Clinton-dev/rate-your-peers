@@ -18,11 +18,20 @@ function buildList() {
                     <div class="card-body">
                     <p class="card-text">Title: ${list[i].title}</p>
                     </div>
-                    <a href="#" class="btn btn-outline-dark btn-sm">view</a>
+                    <a href="detail/1/" class="btn btn-outline-dark btn-sm view-btn">view</a>
                 </div>
             </div>
             `
             wrapper.innerHTML += project
+        }
+
+        for (let i in list) {
+            let viewBtn = document.getElementsByClassName('view-btn')[i]
+
+            viewBtn.addEventListener('click', function(){
+                console.log(list[i].id)
+            })
+
         }
 
      })
