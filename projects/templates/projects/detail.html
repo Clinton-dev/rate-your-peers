@@ -1,9 +1,28 @@
 {% extends 'projects/base.html'%}
+{% load crispy_forms_tags%}
 {% load static %}
 
 {% block content %}
     <div id="list-wrapper" class="row">
     </div>
+    {% for rating in ratings%}
+    <div class="card" >
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Design: {{ rating.design }}</li>
+          <li class="list-group-item">A second item</li>
+          <li class="list-group-item">A third item</li>
+        </ul>
+        {% if user.is_authenticated%}
+        <div class="card-footer mt-2">
+          <form action="">
+              {% csrf_token %}
+              {{ form | crispy}}
+              <button class="btn btn-success" type="submit">Rate</button>
+          </form>
+        </div>
+        {% endif %}
+      </div>
+      {% endfor %}
 {% endblock content%}
 {% block scripts%}
     <script src="{% static 'projects/build-detail.js'%}">
