@@ -14,7 +14,8 @@
                         <img style='height: 250px;object-fit:cover;' src="{{ project.image.url}}" class="card-img-top" alt="photo image">
                     <h5 class="card-title">{{project.title}}</h5>
                     <p class="card-text"><small class="text-muted">{{project.created}}</small></p>
-                    </div>
+                    <a href="{% url 'detail' project.id %}" class="btn btn-outline-dark btn-sm view-btn">view</a>
+                </div>
                 </div>
             </div>
             {% empty %}

@@ -6,5 +6,6 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('search/', views.search_post, name='search'),
     path('user/<str:username>/projects/', UserPictureListView.as_view(), name='user-posts'),
-    path('detail/<str:title>/', views.detail, name='detail'),
+    path('detail/<str:pk>/', views.detail, name='detail'),
+    path('delete/<str:pk>/', views.delete, name='delete'),
 ]

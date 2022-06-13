@@ -4,28 +4,50 @@
 
 {% block content %}
     <div id="list-wrapper" class="row">
+        <div class="col">
+            <div class="card my-2">
+                <img style='max-width: 100%;max-height:100%;' src="{{project.image}}" class="card-img-top" alt="photo image">
+                <div class="card-body">
+                <p class="card-text">Title: {{project.title}}</p>
+                <p class="card-text">Description: {{project.description}}</p>
+                <p class="card-text"><a href='{{project.link}}' target='_blank'> link to live site</a></p>
+                </div>
+                {% if user.id == project.author%}
+                    <div class="mb-3 mx-2">
+                        <a href="#" class="btn btn-secondary">update</a>
+                        <a href="{% url 'delete' project.id %}" class="btn btn-danger">
+                            <i class="bi bi-trash3"></i>
+                            delete
+                        </a>
+
+                    </div>
+                {% endif %}
+            </div>
+        </div>
     </div>
     {% for rating in ratings%}
     <div class="card" >
         <ul class="list-group list-group-flush">
           <li class="list-group-item">Design: {{ rating.design }}</li>
-          <li class="list-group-item">A second item</li>
-          <li class="list-group-item">A third item</li>
+          <li class="list-group-item">Usability:</li>
+          <li class="list-group-item"></li>
         </ul>
-        {% if user.is_authenticated%}
-        <div class="card-footer mt-2">
-          <form action="">
-              {% csrf_token %}
-              {{ form | crispy}}
-              <button class="btn btn-success" type="submit">Rate</button>
-          </form>
-        </div>
-        {% endif %}
       </div>
       {% endfor %}
+      {% if rated %}
+            <div class="card text-white bg-success my-3 p-3">
+                <h4>you have already voted</h4>
+            </div>
+        {% else %}
+            {% if user.is_authenticated%}
+            <div class="card-footer mt-2">
+                <h3>Rate this project</h3>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form | crispy}}
+                <button class="btn btn-success" type="submit">Rate</button>
+            </form>
+            </div>
+            {% endif %}
+        {% endif %}
 {% endblock content%}
-{% block scripts%}
-    <script src="{% static 'projects/build-detail.js'%}">
-
-    </script>
-{% endblock scripts%}

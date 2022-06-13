@@ -3,8 +3,16 @@
 
 {% block content %}
     <div id="list-wrapper" class="row">
+        {% for project in projects%}
+            <div class="col-md-6 col-lg-4">
+                <div class="card my-2">
+                    <img style='height: 250px;object-fit:cover;' src="{{project.image}}" class="card-img-top" alt="photo image">
+                    <div class="card-body">
+                    <p class="card-text">Title: {{project.title}}</p>
+                    </div>
+                    <a href="{% url 'detail' project.id %}" class="btn btn-outline-dark btn-sm view-btn">view</a>
+                </div>
+            </div>
+        {% endfor %}
     </div>
 {% endblock content%}
-{% block scripts%}
-    <script src="{% static 'projects/build-projects-list.js'%}"></script>
-{% endblock scripts%}
