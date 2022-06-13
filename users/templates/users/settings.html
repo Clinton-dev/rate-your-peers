@@ -1,14 +1,12 @@
-{% extends "users/base.html" %} <!-- change to fit base html of the app -->
+{% extends "projects/base.html" %} <!-- change to fit base html of the app -->
 {% load crispy_forms_tags %}
 
 {% block content %}
 <div class="row g-0">
-    <div class="col-md-3 border p-1">
-        <h4>Edit settings</h4>
-    </div>
-    <div class="col-md-9">
+    <div class="col-md-12">
       <!-- user metadata -->
-        <section class="border">
+      <section class="border">
+          <h4>Edit settings</h4>
             <div class="d-flex text-muted pt-3">
                 <img class="image-fluid rounded-circle account-img" src="{{user.profile.image.url}}" alt="{{user.username}} profile picture">
                 <div class="pb-3 mb-0 small lh-sm w-100">

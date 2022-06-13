@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from projects.models import Project
@@ -33,10 +34,8 @@ def projectCreate(request):
     if serializer.is_valid():
         serializer.save()
         print('data saved')
-    else:
-        print('data not saved')
-        print(serializer.errors)
-    return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
 def projectUpdate(request, pk):
@@ -44,7 +43,9 @@ def projectUpdate(request, pk):
     serializer = ProjectSerializer(instance=task,data=request.data)
     if serializer.is_valid():
         serializer.save()
-    return Response(serializer.data)
+        return Response(serializer.data)
+    else:
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['DELETE'])
 def projectDelete(request, pk):
