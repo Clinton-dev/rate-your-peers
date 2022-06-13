@@ -1,0 +1,21 @@
+{% extends "projects/base.html" %}
+
+{% block content %}
+<div class="row">
+    <h2 class="border-bottom">SEARCH PAGE</h2>
+    {% for project in projects%}
+    <div class="col">
+        <div class="card mb-3">
+            <div class="card-body">
+                <img style='height: 250px;object-fit:cover;' src="{{project.image.url}}" class="card-img-top" alt="photo image">
+            <h5 class="card-title">{{project.title}}</h5>
+            <p class="card-text">Uploaded by {{project.author.username}}</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+        <h3>No projects exist yet!</h3>
+{% endfor %}
+</div>
+{% endblock content %}
