@@ -27,7 +27,7 @@ An application like [Awwards](https://www.awwwards.com/). The application allows
 
 Django requires Python and you can install python for your specific operating system by following this documentation [Python download](https://www.python.org/downloads/)
 
-## API END POINT
+## API END POINTs
 Here are a list of the available endpoints:
 1. For the general over view: `https://rate-your-peers.herokuapp.com/api/`
 2. For list of projects: `https://rate-your-peers.herokuapp.com/api/project-list/`
