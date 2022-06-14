@@ -53,7 +53,7 @@ def detail(request,pk):
             rating.save()
             messages.success(request, f'You have successfully voted!')
             rated = True
-            return redirect('detail')
+            return redirect('detail', project.id)
         else:
             messages.success(request, f'Failed!')
     else:
