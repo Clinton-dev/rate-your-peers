@@ -2,13 +2,15 @@ from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth.models import User
 from django.urls import reverse
+from cloudinary.models import CloudinaryField
 
 
 class Project(models.Model):
     title = models.CharField(null=False, max_length=150)
     description = models.CharField(null=False, max_length=200)
     link = models.CharField(null=False, max_length=200)
-    image = models.ImageField(default='default.jpg', null=False, blank=False)
+    # image = models.ImageField(default='default.jpg', null=False, blank=False)
+    image = CloudinaryField('image')
     created = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
