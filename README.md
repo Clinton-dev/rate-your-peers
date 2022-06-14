@@ -31,7 +31,7 @@ Django requires Python and you can install python for your specific operating sy
 Here are a list of the available endpoints:
 1. For the general over view: `https://rate-your-peers.herokuapp.com/api/`
 2. For list of projects: `https://rate-your-peers.herokuapp.com/api/project-list/`
-3.For individual project details: `https://rate-your-peers.herokuapp.com/api/project-detail/<str:pk>/`
+3. For individual project details: `https://rate-your-peers.herokuapp.com/api/project-detail/<str:pk>/`
 4. For deleting an individual project: `https://rate-your-peers.herokuapp.com/api/project-delete/<str:pk>/`
 
 
