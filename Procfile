@@ -1,0 +1,1 @@
+web: gunicorn awards_app.wsgi
