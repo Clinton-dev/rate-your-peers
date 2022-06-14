@@ -23,6 +23,7 @@ def search_post(request):
     return render(request, 'projects/search.html', context)
 
 def home(request):
+    response = ''
     url = f'{base}/api/project-list/'
     res = requests.get(url)
     if (res.status_code == 200):
@@ -34,6 +35,7 @@ def home(request):
     return render(request, 'projects/home.html', context)
 
 def detail(request,pk):
+    response = ''
     url = f'{base}/api/project-detail/{pk}/'
     res = requests.get(url)
     if (res.status_code == 200):
