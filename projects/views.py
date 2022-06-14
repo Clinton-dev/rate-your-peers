@@ -1,8 +1,9 @@
 from django.shortcuts import redirect, render,  get_object_or_404
 from django.contrib.auth.models import User
-from django.views.generic import ListView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.views.generic import ListView, CreateView, UpdateView
 from .models import Project, Rating
-from users.forms import RatingForm
+from users.forms import RatingForm, ProjectCreateForm
 from django.contrib import messages
 from rest_framework.response import Response
 import requests
@@ -74,12 +75,10 @@ def delete(request,pk):
     messages.success(request, 'project deleted successfully!')
     return redirect('home')
 
-def create(request,pk):
-    url = f'http://127.0.0.1:8000/api/project-create/'
-    res = requests.delete(url)
-    print(res)
-    messages.success(request, 'project deleted successfully!')
-    return redirect('home')
+# todo: style rating
+# modify readme
+# create project classlist for update and creation
+
 
 class UserPictureListView(ListView):
     model= Project
@@ -89,3 +88,26 @@ class UserPictureListView(ListView):
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
         return Project.objects.filter(author=user).order_by('-created')
+
+
+class ProjectCreateView(LoginRequiredMixin,CreateView):
+    model= Project
+    fields = ['title', 'description','link', 'image']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+class ProjectUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model= Project
+    fields = ['title', 'description','link', 'image']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        picture = self.get_object()
+        if self.request.user ==  picture.author:
+            return True
+        return False

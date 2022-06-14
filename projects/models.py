@@ -1,6 +1,8 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth.models import User
+from django.urls import reverse
+
 
 class Project(models.Model):
     title = models.CharField(null=False, max_length=150)
@@ -12,6 +14,9 @@ class Project(models.Model):
 
     def __str__(self):
         return f'{self.title} project'
+
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'pk':self.pk})
 
 
 class Rating(models.Model):
