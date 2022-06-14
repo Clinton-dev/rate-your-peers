@@ -32,10 +32,8 @@ Django requires Python and you can install python for your specific operating sy
 
 Run test using the following command
 
-
-```
- ./manage.py test projects
-```
+1. For projects app: ```./manage.py test projects```
+1. For users app: ```./manage.py test users```
 
 ## Deployment
 
