@@ -8,6 +8,7 @@ from django.contrib import messages
 from rest_framework.response import Response
 import requests
 
+base = 'https://rate-your-peers.herokuapp.com'
 
 def search_post(request):
     query = request.GET.get('query')
@@ -22,7 +23,7 @@ def search_post(request):
     return render(request, 'projects/search.html', context)
 
 def home(request):
-    url = 'http://127.0.0.1:8000/api/project-list/'
+    url = f'{base}/api/project-list/'
     res = requests.get(url)
     if (res.status_code == 200):
         response = res.json()
@@ -33,7 +34,7 @@ def home(request):
     return render(request, 'projects/home.html', context)
 
 def detail(request,pk):
-    url = f'http://127.0.0.1:8000/api/project-detail/{pk}/'
+    url = f'{base}/api/project-detail/{pk}/'
     res = requests.get(url)
     if (res.status_code == 200):
         response = res.json()
@@ -69,7 +70,7 @@ def detail(request,pk):
     return render(request, 'projects/detail.html', context)
 
 def delete(request,pk):
-    url = f'http://127.0.0.1:8000/api/project-delete/{pk}/'
+    url = f'{base}/api/project-delete/{pk}/'
     res = requests.delete(url)
     print(res)
     messages.success(request, 'project deleted successfully!')
