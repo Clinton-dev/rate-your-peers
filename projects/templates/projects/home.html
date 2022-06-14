@@ -13,6 +13,8 @@
                     <a href="{% url 'detail' project.id %}" class="btn btn-outline-dark btn-sm view-btn">view</a>
                 </div>
             </div>
+            {% empty %}
+            <h2>Project database empty be the first to upload a project</h2>
         {% endfor %}
     </div>
 {% endblock content%}
