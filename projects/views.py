@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render,  get_object_or_404
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, CreateView, UpdateView
 from .models import Project, Rating
@@ -22,6 +23,7 @@ def search_post(request):
 
     return render(request, 'projects/search.html', context)
 
+@login_required
 def home(request):
     response = ''
     url = f'{base}/api/project-list/'
